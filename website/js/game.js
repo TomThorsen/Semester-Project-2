@@ -1,7 +1,43 @@
+// Fetch data async and update character cards
+async function getCharDetails(char)
+{
+    let response = await fetch('https://anapioficeandfire.com/api/characters?name=' + char);
+    return await response.json();
+}
+let charNumber = 0;
+for (var i = 0; i < 10; i++) {
+    let chars = ["Eddard+Stark","Jaime+Lannister","Daenerys+Targaryen","Sandor+Clegane","Petyr+Baelish","Margaery+Tyrell","Theon+Greyjoy","Jon+Arryn","Jeor+Mormont","Robert+I+Baratheon"];
+
+        getCharDetails(chars[i])
+            .then(data => updateCharCards(data));
+
+    function updateCharCards(data) {
+        let characterCardCont = document.getElementById("char" + charNumber);
+        if (charNumber === 2) {
+            characterCardCont.innerHTML += "<p class='charInfo'>GENDER:" + " " + data[1].gender + "</p>";
+            characterCardCont.innerHTML += "<p class='charInfo'>CULTURE:" + " " + data[1].culture + "</p>";
+            characterCardCont.innerHTML += "<p class='charInfo'>ALIAS:" + " " + data[1].aliases[3] + "</p>";
+        } else {
+            characterCardCont.innerHTML += "<p class='charInfo'>GENDER:" + " " + data[0].gender + "</p>";
+            if (data[0].culture.length > 1) {
+                characterCardCont.innerHTML += "<p class='charInfo'>CULTURE:" + " " + data[0].culture + "</p>";
+            }
+            if (data[0].aliases.length > 1) {
+            characterCardCont.innerHTML += "<p class='charInfo'>ALIAS:" + " " + data[0].aliases[0] + "</p>";
+            }
+        }
+        charNumber = charNumber + 1;
+    }
+}
+
+
 // dice
+function throwDice() {
 var diceValue = Math.floor(Math.random() * 6) + 1;
 console.log(diceValue);
+}
 
+function canvasSetup() {
 //set up the canvas and context
 var canvas = document.getElementById("gameCanvas");
 var ctx = canvas.getContext("2d");
@@ -72,3 +108,4 @@ var waypointLoc39 = [392,225]; // Winterfell
 var waypointLoc40 = [453,222];
 var waypointLoc41 = [460,158];
 var waypointLoc42 = [444,104]; // Castle Black
+}
