@@ -43,9 +43,13 @@ h1 {
     margin-top: 70px;
 }
 .buttonContainer {
-    justify-content: center;
+    justify-content: space-around;
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: 50px;
+}
+.buttonSelected {
+    filter: brightness(50%);
 }
 .responsiveImage {
     width: 100%;
@@ -58,10 +62,58 @@ h1 {
     margin: 0;
 }
 .buttonImage {
-    max-width: 392px;
+    max-width: 330px;
+}
+.buttonUnselected {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.2s;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+}
+.buttonUnselected:hover {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+    cursor: pointer;
 }
 .playerSelectImg {
-    max-width: 229px;
+    max-width: 220px;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    margin: 5px;
+}
+.playerSelectImg:hover {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+    cursor: pointer;
+}
+.characterCard {
+    margin: 10px;
+}
+.player1selected {
+    border-style: solid;
+    border-width: 5px;
+    border-color: #003505;
+    margin: 5px;
+    border-radius: 10px;
+}
+.player2selected {
+    border-style: solid;
+    border-width: 5px;
+    border-color: #8A0F00;
+    margin: 5px;
+    border-radius: 10px;
 }
 .characterContainer {
     display: flex;
@@ -74,13 +126,12 @@ h1 {
     margin: 5px;
     font-size: 1em;
 }
-.characterCard {
-    margin-top: 20px;
-}
+
 .footerText {
     text-align: center;
     margin: 0;
 }
+
 
 /*Game screen*/
 .gameBox {
