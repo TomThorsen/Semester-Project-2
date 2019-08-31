@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css?family=Cinzel|Cinzel+Decorative&display=swap" rel="stylesheet">
     <title>GoT Journey</title>
     <meta name="Description" content="Game Of Thrones: Journey To Castle Black - Home">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -26,9 +25,16 @@
 
         <h1 class="selectHeader">SELECT YOUR CHARACTER</h1>
         <div class="buttonContainer">
-            <img src="img/btn_selectplayer_one.png" alt="Select player one button" class="responsiveImage buttonImage buttonSelected" id="player1button">
-            <img src="img/btn_selectplayer_two.png" alt="Select player two button" class="responsiveImage buttonImage buttonUnselected" id="player2button">
-            <img src="img/btn_startgame.png" alt="start game button" class="responsiveImage buttonImage buttonUnselected" id="startGameButton">
+            <div>
+                <img src="img/btn_selectplayer_one.png" alt="Select player one button" class="responsiveImage buttonImage buttonSelected" id="player1button">
+            </div>
+            <div>
+                <img src="img/btn_selectplayer_two.png" alt="Select player two button" class="responsiveImage buttonImage buttonUnselected" id="player2button">
+            </div>
+            <div>
+                <img src="img/btn_startgame.png" alt="start game button" class="responsiveImage buttonImage buttonUnselected" id="startGameButton">
+                <p id="startErrorPara"></p>
+            </div>
         </div>
 
         <div class="characterContainer">
@@ -69,6 +75,6 @@
         </footer>
     </div>
 </section>
-<script type="text/javascript" src="js/game.js"></script>
+<script type="text/javascript" src="js/playerselect.js"></script>
 </body>
 </html>

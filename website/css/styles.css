@@ -2,6 +2,7 @@ body {
     font-family: 'Cinzel', serif;
     color: #D6C3A7;
     background-color: #29090F;
+    margin: 0px;
 }
 h1 {
     font-family: 'Cinzel Decorative', cursive;
@@ -12,14 +13,17 @@ h1 {
 }
 
 /*Top content*/
+
 .topContentBox {
     display: flex;
     justify-content: space-around;
+    max-width: 1920px;
+    margin: 0 auto;
 }
 .topLogo {
     max-width: 1260px;
     flex-direction: column;
-    margin: 10px;
+    margin: 20px 10px 10px;
 }
 
 /*Main content*/
@@ -47,6 +51,7 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 50px;
+    text-align: center;
 }
 .buttonSelected {
     filter: brightness(50%);
@@ -79,6 +84,9 @@ h1 {
     -webkit-transform: scale(0.9);
     transform: scale(0.9);
     cursor: pointer;
+}
+#startErrorPara {
+    font-size: 1.2em;
 }
 .playerSelectImg {
     max-width: 220px;
@@ -162,4 +170,29 @@ h1 {
     top: 0px;
     left: 0px;
     z-index:20 !important;
+}
+.gameButtonCont {
+    margin-top: 30px;
+}
+#nextPlayerPara {
+    margin: 0;
+    text-align: center;
+    font-size: 1.3em;
+}
+.gameButtonImage {
+    max-width: 250px;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.2s;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+}
+.gameButtonImage:hover {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+    cursor: pointer;
 }

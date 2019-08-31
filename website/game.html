@@ -7,21 +7,30 @@
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Cinzel|Cinzel+Decorative&display=swap" rel="stylesheet">
     <title>GoT Journey</title>
-    <meta name="Description" content="Game Of Thrones: Journey To Castle Black - Home">
+    <meta name="Description" content="Game Of Thrones: Journey To Castle Black - Game">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
 
+
 <section class="topContentBox">
+    <div class="gameButtonCont">
+        <img src="img/btn_quit.png" alt="Quit game button" class="responsiveImage gameButtonImage" id="quitButton">
+    </div>
     <div class="topLogo">
         <img src="img/logo.png" alt="Logo for Game of thrones: Journey to castle black" class="responsiveImage logoImage">
+    </div>
+
+    <div class="gameButtonCont">
+        <img src="img/btn_rolldice.png" alt="Roll dice button" class="responsiveImage gameButtonImage" id="rollDiceButton">
+        <p id="nextPlayerPara">PLAYER 1</p>
     </div>
 </section>
 
 <div class="gameBox">
     <div class="outsideImageWrap">
         <div class="insideImageWrap">
-            <canvas id="gameCanvas" width="1920" height="900"></canvas>
+            <canvas id="gameCanvas" width="1920" height="900">Your browser does not support the HTML5 canvas tag.</canvas>
             <img src="img/map_main.png" alt="Game map" class="mapImage">
         </div>
     </div>
