@@ -54,9 +54,22 @@ window.onload = function () {
     let dice6 = new Image();
     dice6.src = 'img/dice_6.png';
     let diceArray = [dice1,dice2,dice3,dice4,dice5,dice6];
-    player2token.onload = function () {
-        initCanvas(player1token,player2token,dice1,dice2,dice3,dice4,dice5,dice6);
-    };
+
+    let images = ['img/dice_1.png','img/dice_2.png','img/dice_3.png','img/dice_4.png','img/dice_5.png','img/dice_6.png','img/playertoken_' + player1char + '.png','img/playertoken_' + player2char + '.png',];
+    let loadedImages = {};
+    let imageLoadArray = images.map(function(imgurl){
+        let prom = new Promise(function(resolve){
+            let img = new Image();
+            img.onload = function(){
+                loadedImages[imgurl] = img;
+                resolve();
+            };
+            img.src = imgurl;
+        });
+        return prom;
+    });
+    Promise.all(imageLoadArray).then(initCanvas);
+
     function initCanvas() {
         //set up the canvas and context
         let canvas = document.getElementById("gameCanvas");

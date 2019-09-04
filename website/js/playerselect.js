@@ -9,7 +9,7 @@ async function getCharDetails(char)
     return await response.json();
 }
 let charNumber = 0;
-for (var i = 0; i < 10; i++) {
+for (let i = 0; i < 10; i++) {
     let chars = ["Eddard+Stark","Jaime+Lannister","Daenerys+Targaryen","Sandor+Clegane","Petyr+Baelish","Margaery+Tyrell","Theon+Greyjoy","Jon+Arryn","Jeor+Mormont","Robert+I+Baratheon"];
     getCharDetails(chars[i])
         .then(data => updateCharCards(data));
@@ -110,14 +110,12 @@ for (let i = 0; i < charCardsByClass.length; i++) {
                 player1char = charID;
                 clearSelectedPlayer1();
                 elementVar.classList.add("player1selected");
-                console.log('player1=' + player1char);// DEBUG
             }
         } else if (player2SelButton.classList.contains('buttonSelected')){
             if (!elementVar.classList.contains('player1selected')) {
                 player2char = charID;
                 clearSelectedPlayer2();
                 elementVar.classList.add("player2selected");
-                console.log('player2=' + player2char);// DEBUG
             }
         } else {
             alert('Something went terribly wrong... Lets blame hamsters');
