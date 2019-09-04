@@ -1,4 +1,7 @@
 let mouseClickSound = new Audio("sound/mouseclick.wav");
+let player1char = '';
+let player2char = '';
+
 // Fetch data async and update character cards
 async function getCharDetails(char)
 {
@@ -36,9 +39,6 @@ for (var i = 0; i < 10; i++) {
 
 // CHAR SELECTION
 
-//selected char glob vars
-player1char = '';
-player2char = '';
 
 //clear selected button
 function clearSelected() {

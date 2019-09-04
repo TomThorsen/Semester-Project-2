@@ -26,6 +26,7 @@ let mouseClickSound = new Audio("sound/mouseclick.wav");
 let sadSound = new Audio("sound/sad.wav");
 let fanfareSound = new Audio("sound/fanfare.wav");
 let diceSound = new Audio("sound/dice.wav");
+let stepSound = new Audio("sound/step.wav");
 let winSound = new Audio("sound/win.wav");
 // waypoints
 const waypointArray = [[1463,490],[1511,578],[1535,668],[1445,716],[1361,778],[1298,743],[1286,661],[1391,653],[1439,580],[1346,564],[1247,571],[1197,497],[1145,366],[1092,445],[1073,534],[1056,610],[1010,678],[953,710],[884,630],[858,537],[815,452],[881,408],
@@ -56,7 +57,7 @@ window.onload = function () {
     player2token.onload = function () {
         initCanvas(player1token,player2token,dice1,dice2,dice3,dice4,dice5,dice6);
     };
-    function initCanvas(player1token,player2token) {
+    function initCanvas() {
         //set up the canvas and context
         let canvas = document.getElementById("gameCanvas");
         let ctx = canvas.getContext("2d");
@@ -66,7 +67,6 @@ window.onload = function () {
         ctx.drawImage(player2token, player2startPos[0], player2startPos[1], player2token.width = 100, player2token.height = 126);
         ctx.textAlign = "center";
         ctx.font = "bold 30px Cinzel";
-        positionText();
         ctx.drawImage(dice1, dicePosX, dicePosY, dice1.width = 100, dice1.height = 100);
         function positionText(){
             ctx.fillStyle = "#29090F";
@@ -89,6 +89,7 @@ window.onload = function () {
             ctx.fillText(text1 , 965, 190);
             ctx.fillText(text2 , 965, 220);
         }
+        positionText();
         // roll dice button
         document.getElementById("rollDiceButton").addEventListener("click", function(){
             if (!animRolling && !punishBool) {
@@ -223,6 +224,8 @@ window.onload = function () {
                 }else{
                     initP1animate();
                 }
+                stepSound.play();
+                stepSound.currentTime=0;
             }
         }
         // player 2 animation
@@ -260,6 +263,8 @@ window.onload = function () {
                 }else{
                     initP2animate();
                 }
+                stepSound.play();
+                stepSound.currentTime=0;
             }
         }
         // getting mousecoords
@@ -372,7 +377,30 @@ window.onload = function () {
                 }
                 punishBool = true;
             }
-            // exectute punish
+            if (player1loc >= 41 || player2loc >= 41) {
+                if (playerTurn === 'player1') {
+                    eventText("LOCATION: Castle Black","CONGRATULATIONS!", "Player 1 won the game!");
+                    localStorage.setItem("winningPlayer", playerTurn);
+                    localStorage.setItem("winningChar", player1char);
+                }else{
+                    eventText("LOCATION: Castle Black","CONGRATULATIONS!", "Player 2 won the game!");
+                    localStorage.setItem("winningPlayer", playerTurn);
+                    localStorage.setItem("winningChar", player2char);
+                }
+                winSound.play();
+                drawButton();
+                canvas.addEventListener('click', function _clickForOk(evt) {
+
+                    let  mousePos = getMouseCoords(canvas, evt);
+                    if (checkButtonMousePos(mousePos,buttonSize)) {
+                        mouseClickSound.play();
+                        mouseClickSound.currentTime=0;
+                        window.location.href="winner.html";
+                    }
+                }, true);
+                punishBool = true;
+            }
+            // execute punish
             function punishFunc(punishment,player) {
                 drawButton();
                 sadSound.play();
