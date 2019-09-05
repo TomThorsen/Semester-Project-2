@@ -7,21 +7,15 @@ if (winningPlayer === 'player1') {
 } else {
     playerName = 'Player 2';
 }
-
 let elementVar = document.getElementById("winnerText");
 elementVar.innerHTML = "Congratulations to" + " " + playerName + " " + "for winning the game!";
 
 document.getElementById("playerAgainBtn").addEventListener("click", function(){
     window.location.href="index.html";
 });
-
+let elementVar2 = document.getElementById("winImageToken");
+elementVar2.src = 'img/playertoken_' + winningChar + '.png';
 window.onload = function () {
-    let winnerToken = new Image();
-    winnerToken.src = 'img/playertoken_' + winningChar + '.png';
-    winnerToken.onload = function () {
-        initCanvas(winnerToken);
-    };
-    function initCanvas() {
         let canvas = document.getElementById("winCanvas");
         let ctx = canvas.getContext("2d");
 
@@ -42,7 +36,6 @@ window.onload = function () {
         function draw()
         {
             ctx.clearRect(0, 0, canvasW, canvasH);
-            ctx.drawImage(winnerToken, 810, 280, winnerToken.width = 300, winnerToken.height = 378);
             for(let i = 0; i < maxParticles; i++){
                 let particle = particles[i];
                 ctx.beginPath();
@@ -74,5 +67,4 @@ window.onload = function () {
             }
         }
         setInterval(draw, 33);
-    }
 };

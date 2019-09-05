@@ -2,44 +2,47 @@ let mouseClickSound = new Audio("sound/mouseclick.wav");
 let player1char = '';
 let player2char = '';
 
-// Fetch data async and update character cards
-async function getCharDetails(char)
-{
-    let response = await fetch('https://anapioficeandfire.com/api/characters?name=' + char);
-    return await response.json();
-}
-let charNumber = 0;
-for (let i = 0; i < 10; i++) {
-    let chars = ["Eddard+Stark","Jaime+Lannister","Daenerys+Targaryen","Sandor+Clegane","Petyr+Baelish","Margaery+Tyrell","Theon+Greyjoy","Jon+Arryn","Jeor+Mormont","Robert+I+Baratheon"];
-    getCharDetails(chars[i])
-        .then(data => updateCharCards(data));
+// Fetch charinfo, put into array, wait for all to complete, then populate html
+let resultArray = [];
+let promises = [];
+let chars = ["Eddard+Stark","Jaime+Lannister","Daenerys+Targaryen","Sandor+Clegane","Petyr+Baelish","Margaery+Tyrell","Theon+Greyjoy","Jon+Arryn","Jeor+Mormont","Robert+I+Baratheon"];
 
-    function updateCharCards(data) {
-        let characterCardCont = document.getElementById("char" + charNumber);
-        if (charNumber === 2) {
-            characterCardCont.innerHTML += "<p class='charInfo'>GENDER:" + " " + data[1].gender + "</p>";
-            characterCardCont.innerHTML += "<p class='charInfo'>CULTURE:" + " " + data[1].culture + "</p>";
-            characterCardCont.innerHTML += "<p class='charInfo'>ALIAS:" + " " + data[1].aliases[3] + "</p>";
-        } else {
-                characterCardCont.innerHTML += "<p class='charInfo'>GENDER:" + " " + data[0].gender + "</p>";
-            if (data[0].culture.length > 1) {
-                characterCardCont.innerHTML += "<p class='charInfo'>CULTURE:" + " " + data[0].culture + "</p>";
-            } else {
-                characterCardCont.innerHTML += "<p class='charInfo'>CULTURE: UNKNOWN</p>";
-            }
-            if (data[0].aliases.length > 1) {
-                 characterCardCont.innerHTML += "<p class='charInfo'>ALIAS:" + " " + data[0].aliases[0] + "</p>";
-            } else {
-                characterCardCont.innerHTML += "<p class='charInfo'>ALIAS: UNKNOWN</p>";
-            }
-        }
-        charNumber = charNumber + 1;
-    }
+for (var i = 0; i <= chars.length; i++) {
+    let orgReposUrl = 'https://anapioficeandfire.com/api/characters?name=' + chars[i];
+    promises.push(fetch(orgReposUrl).then(response => response.json()));
 }
+
+Promise.all(promises)
+    .then(data => {
+        resultArray = data;
+        console.log(resultArray);
+        console.log('all data done');
+        for (let i = 0; i < 10; i++) {
+            let characterCardCont = document.getElementById("char" + i);
+            if (i === 2) {
+                characterCardCont.innerHTML += "<p class='charInfo'>GENDER:" + " " + resultArray[i][1].gender + "</p>";
+                characterCardCont.innerHTML += "<p class='charInfo'>CULTURE:" + " " + resultArray[i][1].culture + "</p>";
+                characterCardCont.innerHTML += "<p class='charInfo'>ALIAS:" + " " + resultArray[i][1].aliases[3] + "</p>";
+            } else {
+                characterCardCont.innerHTML += "<p class='charInfo'>GENDER:" + " " + resultArray[i][0].gender + "</p>";
+                if (resultArray[i][0].culture.length > 1) {
+                    characterCardCont.innerHTML += "<p class='charInfo'>CULTURE:" + " " + resultArray[i][0].culture + "</p>";
+                } else {
+                    characterCardCont.innerHTML += "<p class='charInfo'>CULTURE: UNKNOWN</p>";
+                }
+                if (resultArray[i][0].aliases.length > 1) {
+                    characterCardCont.innerHTML += "<p class='charInfo'>ALIAS:" + " " + resultArray[i][0].aliases[0] + "</p>";
+                } else {
+                    characterCardCont.innerHTML += "<p class='charInfo'>ALIAS: UNKNOWN</p>";
+                }
+            }
+
+        }
+
+    })
+    .catch(err => console.error(err));
 
 // CHAR SELECTION
-
-
 //clear selected button
 function clearSelected() {
     let buttonsVar = document.querySelector(".buttonSelected");

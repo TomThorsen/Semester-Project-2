@@ -299,7 +299,7 @@ window.onload = function () {
             ctx.fillRect(835, 270, 250, 50);
             ctx.strokeRect(835, 270, 250, 50);
             ctx.fillStyle = "#C29C54";
-            ctx.fillText("UNDERSTOOD" , 960, 305);
+            ctx.fillText("CLICK HERE" , 960, 305);
         }
         let buttonSize = {
             x: 835,
@@ -439,7 +439,7 @@ window.onload = function () {
             // rolled 6, gets new turn
             if (playerTurn === 'player1' && punishBool === false) {
                 if (diceValue === 6) {
-                    eventText("CONGRATULATIONS!","You rolled a 6", "You get another turn!");
+                    eventText("CONGRATULATIONS!","You rolled a 6", "Roll again!");
                     fanfareSound.play();
                     fanfareSound.currentTime=0;
                 }else{
@@ -448,7 +448,7 @@ window.onload = function () {
                 }
             }else if (playerTurn ==='player2' && punishBool === false){
                 if (diceValue === 6) {
-                    eventText("CONGRATULATIONS!","You rolled a 6", "You get another turn!");
+                    eventText("CONGRATULATIONS!","You rolled a 6", "Roll again!");
                     fanfareSound.play();
                     fanfareSound.currentTime=0;
                 }else{
